@@ -9,4 +9,9 @@
     <string name="hitung">Hitung</string>
     <string name="saran">Lihat Saran</string>
     <string name="bagikan">Bagikan</string>
+    <string name="kurus">Kurus</string>
+    <string name="ideal">Ideal</string>
+    <string name="gemuk">Gemuk</string>
+    <string name="bmi_x">BMI: %1$.2f</string>
+    <string name="kategori_x">Kategori: %1s</string>
 </resources>
