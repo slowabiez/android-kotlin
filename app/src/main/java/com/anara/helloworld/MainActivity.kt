@@ -2,6 +2,8 @@ package com.anara.helloworld
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
+import android.widget.Toast
 import com.anara.helloworld.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -17,11 +19,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun hitung() {
-        val berat = this.binding.etBerat.text.toString().toFloat()
-        val tinggi = this.binding.etTinggi.text.toString().toFloat() / 100
-        val bmi = berat / (tinggi * tinggi)
+        val berat = this.binding.etBerat.text.toString()
+        if (TextUtils.isEmpty(berat)) return Toast.makeText(
+            this,
+            "Berat badan tidak boleh kosong.",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        val tinggi = this.binding.etTinggi.text.toString()
+        if (tinggi.isEmpty()) return Toast.makeText(
+            this,
+            "Tinggi badan tidak boleh kosong.",
+            Toast.LENGTH_SHORT
+        ).show()
 
         val selectedId = this.binding.rgKelamin.checkedRadioButtonId
+        if (selectedId == -1) return Toast.makeText(
+            this,
+            "Pilih jenis kelamin dulu.",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        val tinggiCm = tinggi.toFloat() / 100
+        val bmi = berat.toFloat() / (tinggiCm * tinggiCm)
         val isMale = selectedId == R.id.rbPria
         val kategori = this.getKategori(bmi, isMale)
 
