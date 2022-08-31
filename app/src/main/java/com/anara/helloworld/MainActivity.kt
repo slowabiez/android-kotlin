@@ -22,21 +22,21 @@ class MainActivity : AppCompatActivity() {
         val berat = this.binding.etBerat.text.toString()
         if (TextUtils.isEmpty(berat)) return Toast.makeText(
             this,
-            "Berat badan tidak boleh kosong.",
+            getString(R.string.berat_kosong),
             Toast.LENGTH_SHORT
         ).show()
 
         val tinggi = this.binding.etTinggi.text.toString()
         if (tinggi.isEmpty()) return Toast.makeText(
             this,
-            "Tinggi badan tidak boleh kosong.",
+            getString(R.string.tinggi_kosong),
             Toast.LENGTH_SHORT
         ).show()
 
         val selectedId = this.binding.rgKelamin.checkedRadioButtonId
         if (selectedId == -1) return Toast.makeText(
             this,
-            "Pilih jenis kelamin dulu.",
+            getString(R.string.kelamin_kosong),
             Toast.LENGTH_SHORT
         ).show()
 
