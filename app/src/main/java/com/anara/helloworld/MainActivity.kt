@@ -8,20 +8,39 @@ import android.widget.TextView
 class MainActivity : AppCompatActivity() {
 
     private lateinit var haloTextView: TextView
-    private var isActive = false
+    private var number = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        haloTextView = findViewById(R.id.haloTextView)
-
-        val button: Button = findViewById(R.id.button)
-        button.setOnClickListener { toggleHalo() }
+        initContent()
     }
 
-    private fun toggleHalo() {
-        isActive = !isActive
-        haloTextView.text = if (isActive) "Halo Dunia!" else "Hello World!"
+    private fun initContent() {
+        initTextView()
+        initButton()
+    }
+
+    private fun initTextView() {
+        haloTextView = findViewById(R.id.haloTextView)
+        haloTextView.text = number.toString()
+    }
+
+    private fun initButton() {
+        val button: Button = findViewById(R.id.button)
+        button.setOnClickListener { increase() }
+
+        val resetButton: Button = findViewById(R.id.resetButton)
+        resetButton.setOnClickListener { reset() }
+    }
+
+    private fun increase() {
+        number += 1
+        haloTextView.text = "$number"
+    }
+
+    private fun reset() {
+        number = 0
+        haloTextView.text = "$number"
     }
 }
