@@ -28,6 +28,12 @@ class MainActivity : AppCompatActivity() {
         textView = findViewById(R.id.textView)
 
         showData(data[index])
+
+        val button = findViewById<Button>(R.id.button)
+        button.setOnClickListener {
+            index = (index + 1) % data.size
+            showData(data[index])
+        }
     }
 
     private fun showData(hewan: Hewan) {
