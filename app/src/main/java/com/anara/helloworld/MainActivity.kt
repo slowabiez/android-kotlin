@@ -2,6 +2,7 @@ package com.anara.helloworld
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.anara.helloworld.databinding.ActivityMainBinding
 
@@ -26,6 +27,16 @@ class MainActivity : AppCompatActivity() {
         viewModel.getData().observe(this) {
             adapter.updateData(it)
         }
+
+        viewModel.getStatus().observe(this) {
+            this.updateUI(it)
+        }
+    }
+
+    private fun updateUI(status: ApiStatus) {
+        this.binding.progressBar.visibility = if (status == ApiStatus.LOADING) View.VISIBLE else View.GONE
+        this.binding.recyclerView.visibility = if (status == ApiStatus.SUCCESS) View.VISIBLE else View.GONE
+        this.binding.errorTextView.visibility = if (status == ApiStatus.FAILED) View.VISIBLE else View.GONE
     }
 
 }
