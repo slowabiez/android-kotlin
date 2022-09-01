@@ -3,6 +3,7 @@ package com.anara.helloworld
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.anara.helloworld.databinding.ListItemBinding
 
@@ -11,10 +12,16 @@ class MainAdapter(private val data: List<Hewan>): RecyclerView.Adapter<MainAdapt
     class ViewHolder(private val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(hewan: Hewan, position: Int, total: Int) = with(binding) {
-            imageView.setImageResource(hewan.gambarResId)
-            nameTextView.text = hewan.nama
-            latinTextView.text = hewan.namaLatin
-            if (position == total - 1) divider.visibility = View.GONE
+            this.imageView.setImageResource(hewan.gambarResId)
+            this.nameTextView.text = hewan.nama
+            this.latinTextView.text = hewan.namaLatin
+            if (position == total - 1) this.divider.visibility = View.GONE
+
+            this.root.setOnClickListener {
+                val message = this.root.context.getString(R.string.x_diklik, hewan.nama)
+                Toast.makeText(this.root.context, message, Toast.LENGTH_SHORT).show()
+
+            }
         }
     }
 
