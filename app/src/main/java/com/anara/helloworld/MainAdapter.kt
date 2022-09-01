@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.anara.helloworld.databinding.ListItemBinding
+import com.squareup.picasso.Picasso
 
 class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
@@ -15,10 +16,10 @@ class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
     class ViewHolder(private val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(hewan: Hewan, position: Int, total: Int) = with(binding) {
-            this.imageView.setImageResource(hewan.gambarResId)
+            Picasso.get().load(HewanApi.getHewanUrl(hewan.imageId)).into(this.imageView)
             this.nameTextView.text = hewan.nama
             this.latinTextView.text = hewan.namaLatin
-            if (position == total - 1) this.divider.visibility = View.GONE
+            this.divider.visibility = if (position == total - 1) View.GONE else View.VISIBLE
 
             this.root.setOnClickListener {
                 val message = this.root.context.getString(R.string.x_diklik, hewan.nama)
