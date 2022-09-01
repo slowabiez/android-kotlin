@@ -1,9 +1,12 @@
 package com.anara.helloworld
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.delay
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainViewModel: ViewModel() {
 
@@ -11,6 +14,18 @@ class MainViewModel: ViewModel() {
 
     init {
         this.data.value = initData()
+        this.retrieveDataFromServer()
+    }
+
+    private fun retrieveDataFromServer() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val result = HewanApi.service.getHewan()
+                Log.d("MainViewModel", result)
+            } catch (e: Exception) {
+                Log.d("MainViewModel", "Gagal: ${e.message}")
+            }
+        }
     }
 
     fun getData(): LiveData<List<Hewan>> = this.data
