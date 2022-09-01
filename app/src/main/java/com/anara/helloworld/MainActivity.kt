@@ -2,7 +2,6 @@ package com.anara.helloworld
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.anara.helloworld.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,9 +13,8 @@ class MainActivity : AppCompatActivity() {
         this.binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(this.binding.root)
 
-        val data = this.getData()
-
-        Log.d("MainActivity", "Jumlah data: ${data.size}")
+        this.binding.recyclerView.adapter = MainAdapter(this.getData())
+        this.binding.recyclerView.setHasFixedSize(true)
     }
 
     private fun getData(): List<Hewan> {
