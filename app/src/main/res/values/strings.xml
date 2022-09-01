@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Hello World</string>
+    <string name="topping">TOPPINGS</string>
+    <string name="topping_cream">Whipped Cream</string>
+    <string name="topping_chocolate">Chocolate</string>
+    <string name="qty">QUANTITY</string>
+    <string name="qty_plus">+</string>
+    <string name="qty_min">-</string>
+    <string name="order">Order</string>
+    <string name="name_required">Name cannot be empty</string>
+    <string name="qty_required">Quantity cannot be empty</string>
+    <string name="result">Pesanan atas nama %1s\nTotal bayar: %2d</string>
 </resources>
