@@ -1,5 +1,6 @@
 package com.anara.helloworld
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +8,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.anara.helloworld.databinding.ListItemBinding
 
-class MainAdapter(private val data: List<Hewan>): RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+
+    private val data = ArrayList<Hewan>()
 
     class ViewHolder(private val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root) {
 
@@ -23,6 +26,13 @@ class MainAdapter(private val data: List<Hewan>): RecyclerView.Adapter<MainAdapt
 
             }
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(newData: List<Hewan>) {
+        this.data.clear()
+        data.addAll(newData)
+        this.notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
